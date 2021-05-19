@@ -17,3 +17,8 @@ HttpRouter是一个使用go语言开发的轻量级、高性能的http请求路�
 **在你的路由里增加参数：** 停止对你的url路径进行分析，只给path部分一个名字，路由就会动态的把这些参数的值告诉你。通过设计路由，参数可以非常容易的给到你。
 
 **没有额外的消耗** 匹配和分发模块几乎没有额外消耗。唯一的堆分配是在对path的参数进行k-v遍历的时候和构造请求和响应对象的时候（后者主要依赖 `Handler`/`HandlerFunc` API）。在三个参数的api中如果请求的路径没有参数则不进行必要的堆分配。
+
+**最好的性能** [Benchmarks speak for themselves](https://github.com/julienschmidt/go-http-routing-benchmark). 详细的请看文档。
+
+**不会产生服务器崩溃** 你可以设置一个[紧急处理程序](https://godoc.org/github.com/julienschmidt/httprouter#Router.PanicHandler)去解决一个http请求中出现的意外情况。router会在发生意外之后触发`紧急路由`日志，并且跳转到一个优雅的错误页面上。
+
